@@ -16,9 +16,11 @@ app.use('/api/music', musicRoutes);
 // ── Error handler (must be last) ───────────────────────────────────────────
 app.use(errorHandler);
 
-// ── Start server ───────────────────────────────────────────────────────────
-app.listen(PORT, () => {
-  console.log(`🎵 Music Player API running on port ${PORT}`);
-});
+// ── Start server (local only) ──────────────────────────────────────────────
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🎵 Music Player API running on port ${PORT}`);
+  });
+}
 
 export default app;
